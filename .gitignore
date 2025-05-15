@@ -4,8 +4,8 @@
 
 ## User settings
 xcuserdata/
-.xcconfig
-.xcassets
+config.xcconfig
+Assets.xcassets
 
 ## Obj-C/Swift specific
 *.hmap
