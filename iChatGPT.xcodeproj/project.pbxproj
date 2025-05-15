@@ -1,0 +1,707 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2ABDA8512CFF77760062AF19 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABDA8502CFF77760062AF19 /* Down */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A85B64C2C9F442E00E75B2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A85B6302C9F442D00E75B2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A85B6372C9F442D00E75B2A;
+			remoteInfo = iChatGPT;
+		};
+		2A85B6562C9F442E00E75B2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A85B6302C9F442D00E75B2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A85B6372C9F442D00E75B2A;
+			remoteInfo = iChatGPT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2A85B6382C9F442D00E75B2A /* iChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A85B64B2C9F442E00E75B2A /* iChatGPTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iChatGPTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A85B6552C9F442E00E75B2A /* iChatGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iChatGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2A4DFBF82D90204F00F1B436 /* Exceptions for "iChatGPT" folder in "iChatGPT" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2A85B6372C9F442D00E75B2A /* iChatGPT */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2A85B63A2C9F442D00E75B2A /* iChatGPT */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2A4DFBF82D90204F00F1B436 /* Exceptions for "iChatGPT" folder in "iChatGPT" target */,
+			);
+			path = iChatGPT;
+			sourceTree = "<group>";
+		};
+		2A85B64E2C9F442E00E75B2A /* iChatGPTTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iChatGPTTests;
+			sourceTree = "<group>";
+		};
+		2A85B6582C9F442E00E75B2A /* iChatGPTUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iChatGPTUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A85B6352C9F442D00E75B2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ABDA8512CFF77760062AF19 /* Down in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A85B6482C9F442E00E75B2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A85B6522C9F442E00E75B2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A85B62F2C9F442D00E75B2A = {
+			isa = PBXGroup;
+			children = (
+				2A85B63A2C9F442D00E75B2A /* iChatGPT */,
+				2A85B64E2C9F442E00E75B2A /* iChatGPTTests */,
+				2A85B6582C9F442E00E75B2A /* iChatGPTUITests */,
+				2A85B6392C9F442D00E75B2A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A85B6392C9F442D00E75B2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A85B6382C9F442D00E75B2A /* iChatGPT.app */,
+				2A85B64B2C9F442E00E75B2A /* iChatGPTTests.xctest */,
+				2A85B6552C9F442E00E75B2A /* iChatGPTUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A85B6372C9F442D00E75B2A /* iChatGPT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A85B65F2C9F442E00E75B2A /* Build configuration list for PBXNativeTarget "iChatGPT" */;
+			buildPhases = (
+				2A85B6342C9F442D00E75B2A /* Sources */,
+				2A85B6352C9F442D00E75B2A /* Frameworks */,
+				2A85B6362C9F442D00E75B2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2ABDA8532CFF78500062AF19 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2A85B63A2C9F442D00E75B2A /* iChatGPT */,
+			);
+			name = iChatGPT;
+			packageProductDependencies = (
+				2ABDA8502CFF77760062AF19 /* Down */,
+			);
+			productName = iChatGPT;
+			productReference = 2A85B6382C9F442D00E75B2A /* iChatGPT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2A85B64A2C9F442E00E75B2A /* iChatGPTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A85B6622C9F442E00E75B2A /* Build configuration list for PBXNativeTarget "iChatGPTTests" */;
+			buildPhases = (
+				2A85B6472C9F442E00E75B2A /* Sources */,
+				2A85B6482C9F442E00E75B2A /* Frameworks */,
+				2A85B6492C9F442E00E75B2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A85B64D2C9F442E00E75B2A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2A85B64E2C9F442E00E75B2A /* iChatGPTTests */,
+			);
+			name = iChatGPTTests;
+			packageProductDependencies = (
+			);
+			productName = iChatGPTTests;
+			productReference = 2A85B64B2C9F442E00E75B2A /* iChatGPTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2A85B6542C9F442E00E75B2A /* iChatGPTUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A85B6652C9F442E00E75B2A /* Build configuration list for PBXNativeTarget "iChatGPTUITests" */;
+			buildPhases = (
+				2A85B6512C9F442E00E75B2A /* Sources */,
+				2A85B6522C9F442E00E75B2A /* Frameworks */,
+				2A85B6532C9F442E00E75B2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A85B6572C9F442E00E75B2A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2A85B6582C9F442E00E75B2A /* iChatGPTUITests */,
+			);
+			name = iChatGPTUITests;
+			packageProductDependencies = (
+			);
+			productName = iChatGPTUITests;
+			productReference = 2A85B6552C9F442E00E75B2A /* iChatGPTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A85B6302C9F442D00E75B2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					2A85B6372C9F442D00E75B2A = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					2A85B64A2C9F442E00E75B2A = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 2A85B6372C9F442D00E75B2A;
+					};
+					2A85B6542C9F442E00E75B2A = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 2A85B6372C9F442D00E75B2A;
+					};
+				};
+			};
+			buildConfigurationList = 2A85B6332C9F442D00E75B2A /* Build configuration list for PBXProject "iChatGPT" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2A85B62F2C9F442D00E75B2A;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2ABDA84F2CFF770D0062AF19 /* XCRemoteSwiftPackageReference "Down" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2A85B6392C9F442D00E75B2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A85B6372C9F442D00E75B2A /* iChatGPT */,
+				2A85B64A2C9F442E00E75B2A /* iChatGPTTests */,
+				2A85B6542C9F442E00E75B2A /* iChatGPTUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A85B6362C9F442D00E75B2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A85B6492C9F442E00E75B2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A85B6532C9F442E00E75B2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A85B6342C9F442D00E75B2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A85B6472C9F442E00E75B2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A85B6512C9F442E00E75B2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2A85B64D2C9F442E00E75B2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A85B6372C9F442D00E75B2A /* iChatGPT */;
+			targetProxy = 2A85B64C2C9F442E00E75B2A /* PBXContainerItemProxy */;
+		};
+		2A85B6572C9F442E00E75B2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A85B6372C9F442D00E75B2A /* iChatGPT */;
+			targetProxy = 2A85B6562C9F442E00E75B2A /* PBXContainerItemProxy */;
+		};
+		2ABDA8532CFF78500062AF19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2ABDA8522CFF78500062AF19 /* Down */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2A85B65D2C9F442E00E75B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
+				NEW_SETTING1 = "";
+				ONLY_ACTIVE_ARCH = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2A85B65E2C9F442E00E75B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
+				NEW_SETTING1 = "";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		2A85B6602C9F442E00E75B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CHATGPT_API_KEY = "$(CHATGPT_API_KEY)";
+				CODE_SIGN_ENTITLEMENTS = iChatGPT/iChatGPT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
+				DEVELOPMENT_TEAM = 7FSNM3UXLU;
+				ENABLE_PREVIEWS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				GOOGLE_CUSTOM_SEARCH_API = "$(GOOGLE_CUSTOM_SEARCH_API)";
+				INFOPLIST_FILE = iChatGPT/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iChatGPT;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリは音声認識のためにマイクへのアクセスが必要です";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我们将使用您的 Apple ID 进行用户验证。";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.iChatGPT.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		2A85B6612C9F442E00E75B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CHATGPT_API_KEY = "$(CHATGPT_API_KEY)";
+				CODE_SIGN_ENTITLEMENTS = iChatGPT/iChatGPT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
+				DEVELOPMENT_TEAM = 7FSNM3UXLU;
+				ENABLE_PREVIEWS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				GOOGLE_CUSTOM_SEARCH_API = "$(GOOGLE_CUSTOM_SEARCH_API)";
+				INFOPLIST_FILE = iChatGPT/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iChatGPT;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリは音声認識のためにマイクへのアクセスが必要です";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我们将使用您的 Apple ID 进行用户验证。";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.iChatGPT.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		2A85B6632C9F442E00E75B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 8YG68RBKNK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekikouka.iChatGPTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iChatGPT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iChatGPT";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		2A85B6642C9F442E00E75B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 8YG68RBKNK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekikouka.iChatGPTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iChatGPT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iChatGPT";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		2A85B6662C9F442E00E75B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 8YG68RBKNK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekikouka.iChatGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = iChatGPT;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		2A85B6672C9F442E00E75B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2A85B63A2C9F442D00E75B2A /* iChatGPT */;
+			baseConfigurationReferenceRelativePath = config.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 8YG68RBKNK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekikouka.iChatGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = iChatGPT;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A85B6332C9F442D00E75B2A /* Build configuration list for PBXProject "iChatGPT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A85B65D2C9F442E00E75B2A /* Debug */,
+				2A85B65E2C9F442E00E75B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2A85B65F2C9F442E00E75B2A /* Build configuration list for PBXNativeTarget "iChatGPT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A85B6602C9F442E00E75B2A /* Debug */,
+				2A85B6612C9F442E00E75B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2A85B6622C9F442E00E75B2A /* Build configuration list for PBXNativeTarget "iChatGPTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A85B6632C9F442E00E75B2A /* Debug */,
+				2A85B6642C9F442E00E75B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2A85B6652C9F442E00E75B2A /* Build configuration list for PBXNativeTarget "iChatGPTUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A85B6662C9F442E00E75B2A /* Debug */,
+				2A85B6672C9F442E00E75B2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2ABDA84F2CFF770D0062AF19 /* XCRemoteSwiftPackageReference "Down" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnxnguyen/Down";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2ABDA8502CFF77760062AF19 /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ABDA84F2CFF770D0062AF19 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+		2ABDA8522CFF78500062AF19 /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ABDA84F2CFF770D0062AF19 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2A85B6302C9F442D00E75B2A /* Project object */;
+}

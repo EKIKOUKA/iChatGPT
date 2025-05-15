@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CHATGPT_API_KEY</key>
+	<string>$(CHATGPT_API_KEY)</string>
+	<key>CLOUDINARY_SECRET_API</key>
+	<string>$(CLOUDINARY_SECRET_API)</string>
+	<key>GOOGLE_CUSTOM_SEARCH_API</key>
+	<string>$(GOOGLE_CUSTOM_SEARCH_API)</string>
+</dict>
+</plist>
