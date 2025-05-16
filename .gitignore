@@ -6,6 +6,7 @@
 xcuserdata/
 config.xcconfig
 Assets.xcassets
+.DS_Store
 
 ## Obj-C/Swift specific
 *.hmap
