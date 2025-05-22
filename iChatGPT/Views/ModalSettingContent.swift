@@ -95,6 +95,9 @@ struct ModalContentView: View {
             //}
             NavigationView {
                 List {
+                    NavigationLink("個人情報") {
+                        PersonInfoView()
+                    }
                     Section(header: Text("人工知能オンライン")) {
                         NavigationLink("Gemini") {
                             WebView(url: URL(string: "https://gemini.google.com/")!)

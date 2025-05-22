@@ -207,11 +207,11 @@
 				};
 			};
 			buildConfigurationList = 2A85B6332C9F442D00E75B2A /* Build configuration list for PBXProject "iChatGPT" */;
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ja,
 			);
 			mainGroup = 2A85B62F2C9F442D00E75B2A;
 			minimizedProjectReferenceProxies = 1;
@@ -469,7 +469,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.iChatGPT.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -523,7 +523,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.iChatGPT.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
