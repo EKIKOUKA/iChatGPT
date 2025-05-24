@@ -11,19 +11,26 @@ class Request {
     
     static func request(
         url: String,
+        method: String? = nil,
         headers: [String: String]? = nil,
         body: [String: Any]? = nil,
+        rawBody: Data? = nil,
         completion: @escaping (Result<Any, Error>) -> Void
     ) {
         guard let url = URL(string: url) else {
-            print("❌ 無效な URL")
+            print("❌ 無効な URL")
             completion(.failure(NSError(domain: "", code: -1,
-                userInfo: [NSLocalizedDescriptionKey: "無效な URL"])))
+                userInfo: [NSLocalizedDescriptionKey: "無効な URL"])))
             return
         }
 
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        
+        if let http_method = method {
+            request.httpMethod = http_method
+        } else {
+            request.httpMethod = "POST"
+        }
 
         if let headers = headers {
             for (key, value) in headers {
@@ -31,9 +38,11 @@ class Request {
             }
         }
         if request.value(forHTTPHeaderField: "Content-Type") == nil {
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
         }
-        if let body = body {
+        if let rawBody = rawBody {
+            request.httpBody = rawBody
+        } else if let body = body {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         }
 
@@ -44,13 +53,7 @@ class Request {
             } else if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data)
-                    if let array = json as? [[String: Any]] {
-                        completion(.success(array))
-                    } else {
-                        print("⚠️ データ形式が期待されるJSON配列ではない")
-                        print("原始の JSON: \(json)")
-                        completion(.failure(NSError(domain: "", code: -3, userInfo: [NSLocalizedDescriptionKey: "資料格式錯誤"])))
-                    }
+                    completion(.success(json))
                 } catch {
                     print("❌ JSONをデコードエラー: \(error)")
                     print(String(data: data, encoding: .utf8) ?? "")

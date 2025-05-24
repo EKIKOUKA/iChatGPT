@@ -40,18 +40,15 @@ class MediaFileOnlineAddress {
         // Cloudinary 上伝参数
         let publicId = "dsyk0oet0_file"
         let timestamp = Int(Date().timeIntervalSince1970)
-        let uploadUrl = URL(string: "https://api.cloudinary.com/v1_1/dsyk0oet0/image/upload")!
+        let uploadUrl = "https://api.cloudinary.com/v1_1/dsyk0oet0/image/upload"
         // 組合簽名字符串
         let signatureString = "public_id=\(publicId)&timestamp=\(timestamp)\(cloudinary_secret_api)"
         let signature = Insecure.SHA1.hash(data: signatureString.data(using: .utf8)!)
             .map { String(format: "%02hhx", $0) }
             .joined()
-        var request = URLRequest(url: uploadUrl)
-        request.httpMethod = "POST"
-        
+       
         let boundary = UUID().uuidString
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
+    
         var body = Data()
         
         func appendField(name: String, value: String) {
@@ -72,22 +69,28 @@ class MediaFileOnlineAddress {
         body.append("\r\n".data(using: .utf8)!)
         
         body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        request.httpBody = body
         print("body: ", body)
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data,
-               let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-               let url = json["secure_url"] as? String {
-                DispatchQueue.main.async {
-                    print("Cloudinary 上傳成功：\(url)")
-                    completion(url)
-                }
-            } else {
-                print("Cloudinary 上傳失敗：\(error?.localizedDescription ?? "未知錯誤")")
-                completion(nil)
+        Request.request(
+            url: uploadUrl,
+            headers: [
+                "Content-Type": "multipart/form-data; boundary=\(boundary)"
+            ],
+            rawBody: body
+        ) { result in
+            switch result {
+                case .success(let json):
+                    if let dict = json as? [String: Any],
+                       let url = dict["secure_url"] as? String {
+                            DispatchQueue.main.async {
+                                print("Cloudinary 上傳成功：\(url)")
+                                completion(url)
+                            }
+                        }
+                case .failure(let error):
+                    print("❌ Cloudinary 上傳失敗: \(error.localizedDescription)")
+                    completion(nil)
             }
-        }.resume()
+        }
     }
 }

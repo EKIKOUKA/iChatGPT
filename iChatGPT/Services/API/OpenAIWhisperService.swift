@@ -23,17 +23,17 @@ class OpenAIWhisperService {
 
         exportSession?.exportAsynchronously {
             switch exportSession?.status {
-            case .completed:
-                // 调用 Whisper API 进行音频识别
-                self.uploadAudio(fileURL: audioURL, completion: completion)
-            case .failed:
-                print("音频提取失败: \(String(describing: exportSession?.error))")
-                completion(nil)
-            case .cancelled:
-                print("音频提取被取消")
-                completion(nil)
-            default:
-                break
+                case .completed:
+                    // 调用 Whisper API 进行音频识别
+                    self.uploadAudio(fileURL: audioURL, completion: completion)
+                case .failed:
+                    print("音频提取失败: \(String(describing: exportSession?.error))")
+                    completion(nil)
+                case .cancelled:
+                    print("音频提取被取消")
+                    completion(nil)
+                default:
+                    break
             }
         }
     }
@@ -44,13 +44,8 @@ class OpenAIWhisperService {
             return
         }
         
-        let boundary = "Boundary-\(UUID().uuidString)"
-        var request = URLRequest(url: URL(string: "https://api.openai.com/v1/audio/transcriptions")!)
-        request.httpMethod = "POST"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(CHATGPT_API_KEY)", forHTTPHeaderField: "Authorization")
         var data = Data()
-        
+        let boundary = "Boundary-\(UUID().uuidString)"
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"file\"; filename=\"recording.wav\"\r\n".data(using: .utf8)!)
         data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
@@ -66,37 +61,33 @@ class OpenAIWhisperService {
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"model\"\r\n\r\n".data(using: .utf8)!)
         data.append("whisper-1".data(using: .utf8)!)
-
         data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
 
-        let task = URLSession.shared.uploadTask(with: request, from: data) { responseData, response, error in
-            if let error = error {
-                print("上传请求失败: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
-
-            guard let responseData = responseData else {
-                print("没有收到服务器返回的数据 请求失败：\(error?.localizedDescription ?? "未知错误")")
-                completion(nil)
-                return
-            }
-            
-            if let jsonResponse = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any],
-               let transcription = jsonResponse["text"] as? String {
-                print("transcription: \(transcription)")
-                completion(transcription)
-                
-                // 上传成功后删除录音文件
-                self.deleteRecordingFile(at: fileURL)
-            } else {
-                print("无法解析服务器返回的数据: \(String(data: responseData, encoding: .utf8) ?? "未知格式")")
-                completion(nil)
+        Request.request(
+            url: "https://api.openai.com/v1/audio/transcriptions",
+            headers: [
+                "Content-Type": "multipart/form-data; boundary=\(boundary)",
+                "Authorization": "Bearer \(CHATGPT_API_KEY)"
+            ],
+            rawBody: data
+        ) { result in
+            switch result {
+                case .success(let json):
+                    if let dict = json as? [String: Any],
+                       let transcription = dict["text"] as? String {
+                        print("transcription: \(transcription)")
+                        completion(transcription)
+                        self.deleteRecordingFile(at: fileURL)
+                    } else {
+                        print("⚠️ 未能解析文字內容: \(json)")
+                        completion(nil)
+                    }
+                case .failure(let error):
+                    print("❌ 上傳失敗: \(error)")
+                    completion(nil)
             }
         }
-
         print("开始上传音频文件到 OpenAI Whisper API")
-        task.resume()
     }
     
     // 删除录音文件的函数

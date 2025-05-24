@@ -37,6 +37,7 @@
 		2A4DFBF82D90204F00F1B436 /* Exceptions for "iChatGPT" folder in "iChatGPT" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				config.xcconfig,
 				Info.plist,
 			);
 			target = 2A85B6372C9F442D00E75B2A /* iChatGPT */;
@@ -191,7 +192,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					2A85B6372C9F442D00E75B2A = {
 						CreatedOnToolsVersion = 16.0;
@@ -440,6 +441,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = 7FSNM3UXLU;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -450,8 +452,8 @@
 				INFOPLIST_FILE = iChatGPT/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iChatGPT;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラを使いたい";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリは音声認識のためにマイクへのアクセスが必要です";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我们将使用您的 Apple ID 进行用户验证。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -497,6 +499,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = 7FSNM3UXLU;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -504,8 +507,8 @@
 				INFOPLIST_FILE = iChatGPT/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iChatGPT;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラを使いたい";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリは音声認識のためにマイクへのアクセスが必要です";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "我们将使用您的 Apple ID 进行用户验证。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

@@ -8,92 +8,16 @@
 import SwiftUI
 import WebKit
 import SafariServices
-import AuthenticationServices
-
-struct ModalSettingContent: View {
-    @Binding var isShowingModal: Bool
-    
-    var body: some View {
-        HStack {
-            Text("宇都宮 誠")
-                .font(.body)
-                .foregroundColor(.primary)
-            
-//            SignInWithAppleButton(
-//                onRequest: { request in
-//                    handleAppleSignIn(request)
-//                },
-//                onCompletion: { result in
-//                    switch result {
-//                    case .success(let authorization):
-//                        handleAuthorization(authorization)
-//                    case .failure(let error):
-//                        print("Authorization failed: \(error.localizedDescription)")
-//                        handleError(error) // 调用错误处理函数
-//                    }
-//                }
-//            )
-//            .frame(width: 280, height: 45)
-            
-            Spacer() // 使用 Spacer() 将文本和图标分隔开
-            
-            Button(action: {
-                // 菜单按钮的动作
-                isShowingModal = true // 设置状态为 true 显示模式视图
-            }) {
-                Image(systemName: "ellipsis") // SwiftUI 提供的菜单图标
-                    .font(.system(size: 24))
-                    .foregroundColor(.gray)
-            }
-        }
-        .frame(height: 10)
-        .padding()
-        //.background(Color(UIColor.systemGray6)) // 背景颜色
-    }
-    
-    func handleAppleSignIn(_ request: ASAuthorizationAppleIDRequest) {
-        request.requestedScopes = [.fullName, .email]
-    }
-    
-    func handleAuthorization(_ authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            let userId = appleIDCredential.user
-            let email = appleIDCredential.email
-            let fullName = appleIDCredential.fullName
-            print("appleIDCredential: \(appleIDCredential)")
-            // 保存这些用户信息，执行进一步操作
-            print("User ID: \(userId), Email: \(String(describing: email)), Full Name: \(String(describing: fullName))")
-        }
-    }
-
-    // 新增的错误处理函数
-    func handleError(_ error: Error) {
-        print("Sign in with Apple failed: \(error.localizedDescription)")
-        // 可以在这里添加额外的错误处理逻辑
-        // 例如，显示错误提示给用户
-    }
-}
 
 struct ModalContentView: View {
     @Binding var isShowingModal: Bool // 绑定状态
 
     var body: some View {
+        
         VStack {
-            //ZStack {
-                /*HStack {
-                    Spacer()
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.black) // 深灰色X
-                            .background(Circle().fill(Color(white: 0.9))) // 浅灰色背景
-                    }
-                    .padding(.trailing)
-                }*/
-            //}
+            
             NavigationView {
+                
                 List {
                     NavigationLink("個人情報") {
                         PersonInfoView()

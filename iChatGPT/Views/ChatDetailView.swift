@@ -123,11 +123,11 @@ struct ChatDetailView: View {
             } */
             ToolbarItem(placement: .topBarTrailing) {
                 HStack(spacing: 5) {
-                    Button(action: createNewConversation) {
+                    /* Button(action: createNewConversation) {
                         Image(systemName: "waveform.circle.fill")
                             .frame(width: 30, height: 30)
                             .foregroundColor(colorScheme == .dark ? .white : .black)
-                    }
+                    } */
                     Button(action: createNewConversation) {
                         Image(systemName: "bubble.and.pencil")
                             .font(.system(size: 14))

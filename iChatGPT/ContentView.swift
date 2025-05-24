@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 import Combine
 
-
 enum MessageElementType {
     case plainText // 普通文本
     case mathFormula // 数学公式

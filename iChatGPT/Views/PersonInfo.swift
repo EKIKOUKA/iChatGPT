@@ -13,7 +13,8 @@ struct PersonInfoView: View {
     let isoCountries: [(code: String, name: String)] = {
         let overrides: [String: String] = [
             "TW": "台湾（中華民国）",
-            "CN": "中国（支那、西朝鮮）"
+            "CN": "中国（支那、西朝鮮）",
+            "JP": "大日本帝国"
         ]
         
         return Locale.Region.isoRegions.compactMap { region in
@@ -30,17 +31,56 @@ struct PersonInfoView: View {
     var body: some View {
  
         Form {
-            
+//            ModalSettingContent()
             List {
                 Picker("国籍", selection: $selectiedCountry) {
                     ForEach(isoCountries, id: \.code) { country in
                         Text(country.name).tag(country.code)
                     }
                 }
-//                    .pickerStyle(.wheel)
+                // .pickerStyle(.wheel)
                 .onChange(of: selectiedCountry) {
                     print(selectiedCountry)
                 }
+            }
+        }
+        
+        .onAppear() {
+//            getGoodsList()
+            speakeasy_verify()
+        }
+        .navigationTitle("個人情報")
+    }
+    
+    func getGoodsList() {
+        Request.request(url: "http://133.242.132.37/table_sample/api/getGoodsList") { result in
+            // print("result: ", result)
+            switch result {
+                case .success(let json):
+                    if let firstItem = (json as? [[String: Any]])?.first {
+                        print("firstItem: {")
+                        for (key, value) in firstItem {
+                            print("     \(key): \(value)")
+                        }
+                        print("}")
+                    }
+                case .failure(let error):
+                    print("❌ 請求失敗: \(error.localizedDescription)")
+            }
+        }
+    }
+    func speakeasy_verify() {
+        Request.request(url: "http://133.242.132.37:3000/verify",
+            body: [
+              "userId": "10001",
+              "token": "849515"
+            ]
+        ) { result in
+            switch result {
+                case .success(let json):
+                    print("json: ", json)
+                case .failure(let error):
+                    print("❌ 請求失敗: \(error.localizedDescription)")
             }
         }
     }
