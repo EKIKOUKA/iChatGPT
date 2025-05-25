@@ -9,6 +9,7 @@ import SwiftUI
 struct PersonInfoView: View {
     
     @AppStorage("Country") var selectiedCountry = "JP"
+    @Binding var navigationPath: NavigationPath
     
     let isoCountries: [(code: String, name: String)] = {
         let overrides: [String: String] = [
@@ -29,9 +30,8 @@ struct PersonInfoView: View {
     } ()
     
     var body: some View {
- 
-        Form {
-//            ModalSettingContent()
+        
+        VStack {
             List {
                 Picker("国籍", selection: $selectiedCountry) {
                     ForEach(isoCountries, id: \.code) { country in
@@ -43,13 +43,22 @@ struct PersonInfoView: View {
                     print(selectiedCountry)
                 }
             }
+
+            NavigationLink(value: "Login") {
+                Text("前往登入頁面")
+                    .fontWeight(.bold)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+            }
+            
+            .onAppear() {
+//                    getGoodsList()
+            }
+            .navigationTitle("個人情報")
         }
-        
-        .onAppear() {
-//            getGoodsList()
-            speakeasy_verify()
-        }
-        .navigationTitle("個人情報")
+        .frame(maxHeight: .infinity, alignment: .center)
     }
     
     func getGoodsList() {
@@ -69,25 +78,11 @@ struct PersonInfoView: View {
             }
         }
     }
-    func speakeasy_verify() {
-        Request.request(url: "http://133.242.132.37:3000/verify",
-            body: [
-              "userId": "10001",
-              "token": "849515"
-            ]
-        ) { result in
-            switch result {
-                case .success(let json):
-                    print("json: ", json)
-                case .failure(let error):
-                    print("❌ 請求失敗: \(error.localizedDescription)")
-            }
-        }
-    }
 }
 
 struct PersonInfo_Previews: PreviewProvider {
+    @Binding var navigationPath: NavigationPath
     static var previews: some View {
-        PersonInfoView()
+//        PersonInfoView(navigationPath: $navigationPath)
     }
 }

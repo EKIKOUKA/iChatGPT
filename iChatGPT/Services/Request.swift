@@ -44,20 +44,47 @@ class Request {
             request.httpBody = rawBody
         } else if let body = body {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+            print("httpBody: ", body)
         }
 
-        URLSession.shared.dataTask(with: request) { data, _, error in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("❌ 請求が誤り: \(error)")
                 completion(.failure(error))
-            } else if let data = data {
+            } else if let data = data, let httpResponse = response as? HTTPURLResponse {
+                let statusCode = httpResponse.statusCode
+                if statusCode != 200 {
+                    let bodyString = String(data: data, encoding: .utf8) ?? ""
+                    print("❌ HTTP エラー: \(statusCode)")
+                    print("Response body: \(bodyString)")
+                    let error = NSError(domain: "", code: statusCode,
+                        userInfo: [NSLocalizedDescriptionKey: "HTTP エラー: \(statusCode)\n\(bodyString)"])
+                    completion(.failure(error))
+                    return
+                }
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data)
+                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    if let dict = json as? [String: Any] {
+                        if let message = dict["message"] as? String {
+                            print("Response message: \(message)")
+                        }
+                    }
                     completion(.success(json))
                 } catch {
+                    let rawString = String(data: data, encoding: .utf8) ?? "<非UTF-8データ>"
                     print("❌ JSONをデコードエラー: \(error)")
-                    print(String(data: data, encoding: .utf8) ?? "")
-                    completion(.failure(error))
+                    print("Raw response: \(rawString)")
+                    // Try to parse message from raw string if possible
+                    if let dataFromString = rawString.data(using: .utf8),
+                       let jsonFromString = try? JSONSerialization.jsonObject(with: dataFromString, options: .allowFragments),
+                       let dict = jsonFromString as? [String: Any],
+                       let message = dict["message"] as? String {
+                          let errorWithMessage = NSError(domain: "", code: -3,
+                            userInfo: [NSLocalizedDescriptionKey: message])
+                          completion(.failure(errorWithMessage))
+                    } else {
+                        completion(.failure(error))
+                    }
                 }
             } else {
                 print("❌ データなし")

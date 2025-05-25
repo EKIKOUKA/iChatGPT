@@ -11,45 +11,31 @@ import SafariServices
 
 struct ModalContentView: View {
     @Binding var isShowingModal: Bool // 绑定状态
-
+    @State private var navigationPath = NavigationPath()
+    
     var body: some View {
         
         VStack {
             
-            NavigationView {
+            NavigationStack(path: $navigationPath) {
                 
                 List {
-                    NavigationLink("個人情報") {
-                        PersonInfoView()
-                    }
+                    NavigationLink("個人情報", value: "PersonInfo")
+                    
                     Section(header: Text("人工知能オンライン")) {
-                        NavigationLink("Gemini") {
-                            WebView(url: URL(string: "https://gemini.google.com/")!)
-                        }
-                        NavigationLink("ChatGPT") {
-                            WebView(url: URL(string: "https://chatgpt.com/")!)
-                        }
+                        NavigationLink("Gemini", destination: WebView(url: URL(string: "https://gemini.google.com/")!))
+                        NavigationLink("ChatGPT", destination: WebView(url: URL(string: "https://chatgpt.com/")!))
                     }
                     
                     Section(header: Text("ChatGPT API について").textCase(.none)) {
-                        NavigationLink("使用情況") {
-                            SafariView(url: URL(string: "https://platform.openai.com/settings/organization/usage")!)
-                        }
-                        NavigationLink("請求書") {
-                            SafariView(url: URL(string: "https://platform.openai.com/settings/organization/billing/overview")!)
-                        }
-                        NavigationLink("制限") {
-                            SafariView(url: URL(string: "https://platform.openai.com/settings/organization/limits")!)
-                        }
-                        NavigationLink("料金") {
-                            SafariView(url: URL(string: "https://openai.com/api/pricing/")!)
-                        }
+                        NavigationLink("使用情況", destination: SafariView(url: URL(string: "https://platform.openai.com/settings/organization/usage")!))
+                        NavigationLink("請求書", destination: SafariView(url: URL(string: "https://platform.openai.com/settings/organization/billing/overview")!))
+                        NavigationLink("制限", destination: SafariView(url: URL(string: "https://platform.openai.com/settings/organization/limits")!))
+                        NavigationLink("料金", destination: SafariView(url: URL(string: "https://openai.com/api/pricing/")!))
                     }
                     
                     Section(header: Text("Cloudinary").textCase(.none)) {
-                        NavigationLink("Media Library") {
-                            SafariView(url: URL(string: "https://console.cloudinary.com/console/c-a34cabbb2cbbef50f7d5888c2d7ad0/media_library/search?q=&view_mode=mosaic")!)
-                        }
+                        NavigationLink("Media Library", destination: SafariView(url: URL(string: "https://console.cloudinary.com/console/c-a34cabbb2cbbef50f7d5888c2d7ad0/media_library/search?q=&view_mode=mosaic")!))
                     }
                     
                     Section(header: Text("アカウント")) {
@@ -65,8 +51,21 @@ struct ModalContentView: View {
                         Image(systemName: "xmark.circle.fill")
                     }
                 )
+                .navigationDestination(for: String.self) { value in
+                    switch value {
+                        case "PersonInfo":
+                            PersonInfoView(navigationPath: $navigationPath) // 将 navigationPath 綁定傳給子頁
+                        case "Login":
+                            Login(navigationPath: $navigationPath)
+                        case "TOTP":
+                            TOTP_VerityView(navigationPath: $navigationPath)
+                        case "CreateTOTP_Verity":
+                            CreateTOTP_VirityView(navigationPath: $navigationPath)
+                        default:
+                            EmptyView()
+                    }
+                }
             }
-            .navigationViewStyle(StackNavigationViewStyle()) // 避免嵌套導航效果
         }
     }
 }
