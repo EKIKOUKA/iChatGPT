@@ -51,13 +51,14 @@ struct CodeInputView: View {
                 }
             ))
             .keyboardType(.numberPad)
+            .textContentType(.oneTimeCode)
             .focused($isFocused)
             .opacity(0.01)
             .frame(width: 0, height: 0)
         }
         .contentShape(Rectangle())
         .onTapGesture { isFocused = true }
-        .onAppear { isFocused = false }
+        .onAppear { isFocused = true }
     }
     private func digit(at i: Int) -> String {
         guard i < code.count else { return "" }

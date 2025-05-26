@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FormData {
-    var username: String = "a@yahoo.co.jp"
-    var password: String = "test.101"
+    var username: String = ""
+    var password: String = ""
 }
 
 struct Login: View {
@@ -20,95 +20,118 @@ struct Login: View {
     @State var visible = false
     @State private var usernameError: String? = nil
     @State private var passwordError: String? = nil
-    
-    @State private var selectedScreen: String? = nil
-//    @State private var navigationPath = NavigationPath()
+
     @Binding var navigationPath: NavigationPath
     
+    @State var isLoading = false
+    @State var showAlert = false
+    @State var alertMsg: String? = nil
+    
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Sign up a new account")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom, 40)
-                
-            TextField("Username", text: $formData.username)
-                .padding()
-                .background(Color(.systemBackground))
-                .cornerRadius(6)
-                .padding(.leading)
-                .padding(.trailing)
-
-            HStack {
-                Text(usernameError ?? "")
-                    .foregroundStyle(.red)
-                    .frame(height: 18)
-                    .padding(.leading)
-                Spacer()
-            }
-            .padding(.leading)
+        
+        ZStack {
             
-            ZStack {
+            VStack {
                 
-                VStack {
-                    if visible {
-                        TextField("Password", text: $formData.password)
-                            .focused($passwordFieldIsFocused)
-                            .padding()
-                            .background(Color(.systemBackground))
-                            .cornerRadius(6)
-                    } else {
-                        SecureField("Password", text: $formData.password)
-                            .focused($passwordFieldIsFocused)
-                            .padding()
-                            .background(Color(.systemBackground))
-                            .cornerRadius(6)
+                Spacer()
+                Text("Sign up a new account")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 40)
+                
+                TextField("Username", text: $formData.username)
+                    .padding()
+                    .keyboardType(.asciiCapable)
+                    .textContentType(.username)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .background(Color(.systemBackground))
+                    .cornerRadius(6)
+                    .padding(.leading)
+                    .padding(.trailing)
+                    .onChange(of: formData.username) {
+                        let filtered = formData.username.filter { $0.isASCII && !$0.isWhitespace }
+                        if filtered != formData.username {
+                            formData.username = filtered
+                        }
                     }
-                    HStack {
-                        Text(passwordError ?? "")
-                            .foregroundStyle(.red)
-                            .frame(height: 18)
-                            .padding(.leading)
-                        Spacer()
-                    }
-                }
                 
                 HStack {
+                    Text(usernameError ?? "")
+                        .foregroundStyle(.red)
+                        .frame(height: 18)
+                        .padding(.leading)
                     Spacer()
-                    Button(action: {
-                        visible.toggle()
-                        passwordFieldIsFocused = true
-                    }) {
-                        Image(systemName: visible ? "eye.slash.fill" : "eye.fill")
-                            .opacity(0.8)
+                }
+                .padding(.leading)
+                
+                ZStack {
+                    
+                    VStack {
+                        if visible {
+                            TextField("Password", text: $formData.password)
+                                .focused($passwordFieldIsFocused)
+                                .padding()
+                                .background(Color(.systemBackground))
+                                .cornerRadius(6)
+                        } else {
+                            SecureField("Password", text: $formData.password)
+                                .focused($passwordFieldIsFocused)
+                                .textContentType(.password)
+                                .autocapitalization(.none)
+                                .padding()
+                                .background(Color(.systemBackground))
+                                .cornerRadius(6)
+                        }
+                        HStack {
+                            Text(passwordError ?? "")
+                                .foregroundStyle(.red)
+                                .frame(height: 18)
+                                .padding(.leading)
+                            Spacer()
+                        }
                     }
-                    .padding(.trailing, 12)
-                    .padding(.top, -20)
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            visible.toggle()
+                            passwordFieldIsFocused = true
+                        }) {
+                            Image(systemName: visible ? "eye.slash.fill" : "eye.fill")
+                                .opacity(0.8)
+                        }
+                        .padding(.trailing, 12)
+                        .padding(.top, -20)
+                    }
+                }
+                .padding()
+                
+                Spacer()
+                VStack() {
+                    // Sign up button
+                    Button(action: {
+                        validate()
+                    }) {
+                        Text("Sign up")
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                    }
                 }
             }
+            
             .padding()
-
-            Spacer()
-            VStack() {
-                // Sign up button
-                Button(action: {
-                    validate()
-                }) {
-                    Text("Sign up")
-                        .fontWeight(.bold)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(8)
-                        .padding(.horizontal)
-                }
-            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(.systemGroupedBackground))
+            .navigationTitle("登録")
+            
+            .commonAlert(show: $showAlert, message: alertMsg)
+            LoadingOverlayView(isLoading: isLoading)
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemGroupedBackground))
-        .navigationTitle("登録")
     }
     
     
@@ -127,26 +150,36 @@ struct Login: View {
         validate(name: formData.password)
 
         if usernameError == nil && passwordError == nil {
-
-            Request.request(url: "http://133.242.132.37:3000/login",
+            Request.request(url: "http://133.242.132.37:3001/iChatGPT/login",
                 body: [
                     "user_name": formData.username,
                     "password": formData.password
-                ]
-            ) { result in
-                switch result {
-                    case .success(let json):
-                        print("login json: ", json)
-                        if let dict = json as? [String: Any],
-                           let success = dict["success"] as? Int,
-                           success == 1 {
-                            userId = dict["user_id"] as? Int
-                            navigationPath.append("TOTP")
-                        }
-                    case .failure(let error):
-                        print("❌ 請求失敗: \(error.localizedDescription)")
+                ],
+                onStart: {
+                    isLoading = true
+                },
+                onFailure: { errorMsg in
+                    isLoading = false
+                    alertMsg = errorMsg
+                    showAlert = true
+                },
+                completion: { result in
+                    print("result: ", result)
+                    isLoading = false
+                    switch result {
+                        case .success(let json):
+                            print("login json: ", json)
+                            if let dict = json as? [String: Any],
+                               let success = dict["success"] as? Int,
+                               success == 1 {
+                                userId = dict["user_id"] as? Int
+                                navigationPath.append("TOTP")
+                            }
+                        case .failure(let error):
+                            print("❌ 請求失敗: \(error.localizedDescription)")
+                    }
                 }
-            }
+            )
         }
     }
 }

@@ -11,43 +11,63 @@ struct CreateTOTP_VirityView: View {
     @Binding var navigationPath: NavigationPath
     @AppStorage("userId") var userId: String?
     @State private var code: String = ""
-    @State private var codeStatus: String = ""
+    
+    @State var isLoading = false
+    @State var showAlert = false
+    @State var alertMsg: String? = nil
     
     var body: some View {
-        VStack(spacing: 16) {
-            WebView(url: URL(string: "http://133.242.132.37:3000/generate-secret?userId=" + userId!)!)
-                .frame(width: .infinity, height: 400)
-            VStack(spacing: 20) {
-                CodeInputView(code: $code) { input in
-                    print("code: ", input)
-                    print("$code wrappedValue: ", $code.wrappedValue)
-                    speakeasy_verify()
+        ZStack {
+            VStack(spacing: 16) {
+                WebView(url: URL(string: "http://133.242.132.37:3001/iChatGPT/generate-secret?userId=" + userId!)!)
+                    .frame(width: .infinity, height: 400)
+                VStack(spacing: 20) {
+                    CodeInputView(code: $code) { input in
+                        print("code: ", input)
+                        print("$code wrappedValue: ", $code.wrappedValue)
+                        speakeasy_verify()
+                    }
                 }
-                Text(codeStatus)
             }
+            .padding()
+            .navigationTitle("二要素認証コードを設定")
+            .commonAlert(text: "認証結果", show: $showAlert, message: alertMsg)
+            LoadingOverlayView(isLoading: isLoading)
         }
-        .padding()
-        .navigationTitle("TOTP確認コードを設定")
     }
     
     func speakeasy_verify() {
-        Request.request(url: "http://133.242.132.37:3000/verify",
+        Request.request(url: "http://133.242.132.37:3001/iChatGPT/verify",
             body: [
                 "userId": userId!,
                 "token": $code.wrappedValue
-            ]
-        ) { result in
-            switch result {
-                case .success(let json):
-                    print("json: ", json)
-                if let dict = json as? [String: Any],
-                   let success = dict["success"] as? Int {
-                    codeStatus = success == 1 ? "正しい" : "正しくない"
+            ],
+            onStart: {
+                isLoading = true
+            },
+            onFailure: { errorMsg in
+                isLoading = false
+                alertMsg = errorMsg
+                showAlert = true
+            },
+            completion: { result in
+                print("result: ", result)
+                isLoading = false
+                switch result {
+                    case .success(let json):
+                        print("json: ", json)
+                        if let dict = json as? [String: Any],
+                           let success = dict["success"] as? Int {
+                            if (success != 1) {
+                                alertMsg = "認証コードは正しくない"
+                                showAlert = true
+                            }
+                        }
+                    case .failure(let error):
+                        print("❌ 請求失敗: \(error.localizedDescription)")
                 }
-                case .failure(let error):
-                    print("❌ 請求失敗: \(error.localizedDescription)")
             }
-        }
+        )
     }
 }
 

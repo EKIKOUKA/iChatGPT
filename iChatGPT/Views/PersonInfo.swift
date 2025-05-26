@@ -8,8 +8,12 @@ import SwiftUI
 
 struct PersonInfoView: View {
     
-    @AppStorage("Country") var selectiedCountry = "JP"
+    @AppStorage("Country") var selectedCountry = "JP"
     @Binding var navigationPath: NavigationPath
+    
+    @State var isLoading = false
+    @State var showAlert = false
+    @State var alertMsg: String? = nil
     
     let isoCountries: [(code: String, name: String)] = {
         let overrides: [String: String] = [
@@ -30,53 +34,80 @@ struct PersonInfoView: View {
     } ()
     
     var body: some View {
-        
-        VStack {
-            List {
-                Picker("国籍", selection: $selectiedCountry) {
-                    ForEach(isoCountries, id: \.code) { country in
-                        Text(country.name).tag(country.code)
+        ZStack {
+            VStack {
+                List {
+                    Picker("国籍", selection: $selectedCountry) {
+                        ForEach(isoCountries, id: \.code) { country in
+                            Text(country.name).tag(country.code)
+                        }
+                    }
+                    // .pickerStyle(.wheel)
+                    .onChange(of: selectedCountry) {
+                        print(selectedCountry)
                     }
                 }
-                // .pickerStyle(.wheel)
-                .onChange(of: selectiedCountry) {
-                    print(selectiedCountry)
+                
+                NavigationLink(value: "Login") {
+                    Text("前往登入頁面")
+                        .fontWeight(.bold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(.ultraThinMaterial)
                 }
+                
+                .onAppear() {
+//                  getGoodsList()
+                }
+                .navigationTitle("個人情報")
             }
-
-            NavigationLink(value: "Login") {
-                Text("前往登入頁面")
-                    .fontWeight(.bold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(8)
-                    .padding(.horizontal)
-            }
+            .frame(maxHeight: .infinity, alignment: .center)
             
-            .onAppear() {
-//                    getGoodsList()
+            .alert("失敗が起こった", isPresented: $showAlert) {
+                Button("閉じる", role: .cancel) {}
+            } message: {
+                Text(alertMsg ?? "")
             }
-            .navigationTitle("個人情報")
+            if isLoading {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                    .overlay(
+                        ProgressView("ローディング中…")
+                            .padding()
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(10)
+                    )
+            }
         }
-        .frame(maxHeight: .infinity, alignment: .center)
     }
     
     func getGoodsList() {
-        Request.request(url: "http://133.242.132.37/table_sample/api/getGoodsList") { result in
-            // print("result: ", result)
-            switch result {
-                case .success(let json):
-                    if let firstItem = (json as? [[String: Any]])?.first {
-                        print("firstItem: {")
-                        for (key, value) in firstItem {
-                            print("     \(key): \(value)")
+        Request.request(url: "http://133.242.132.37/table_sample/api/getGoodsList",
+            onStart: {
+                isLoading = true
+            },
+            onFailure: { errorMsg in
+                isLoading = false
+                alertMsg = errorMsg
+                showAlert = true
+            },
+            completion: { result in
+                print("result: ", result)
+                isLoading = false
+                switch result {
+                    case .success(let json):
+                        if let firstItem = (json as? [[String: Any]])?.first {
+                            print("firstItem: {")
+                            for (key, value) in firstItem {
+                                print("     \(key): \(value)")
+                            }
+                            print("}")
                         }
-                        print("}")
-                    }
-                case .failure(let error):
-                    print("❌ 請求失敗: \(error.localizedDescription)")
+                    case .failure(let error):
+                        print("❌ 請求失敗: \(error.localizedDescription)")
+                }
             }
-        }
+        )
     }
 }
 
