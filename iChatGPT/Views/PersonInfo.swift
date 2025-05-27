@@ -82,15 +82,8 @@ struct PersonInfoView: View {
     }
     
     func getGoodsList() {
+        isLoading = true
         Request.request(url: "http://133.242.132.37/table_sample/api/getGoodsList",
-            onStart: {
-                isLoading = true
-            },
-            onFailure: { errorMsg in
-                isLoading = false
-                alertMsg = errorMsg
-                showAlert = true
-            },
             completion: { result in
                 print("result: ", result)
                 isLoading = false
@@ -105,6 +98,8 @@ struct PersonInfoView: View {
                         }
                     case .failure(let error):
                         print("❌ 請求失敗: \(error.localizedDescription)")
+                        alertMsg = error.localizedDescription
+                        showAlert = true
                 }
             }
         )

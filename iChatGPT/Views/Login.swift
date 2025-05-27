@@ -150,19 +150,12 @@ struct Login: View {
         validate(name: formData.password)
 
         if usernameError == nil && passwordError == nil {
+            isLoading = true
             Request.request(url: "http://133.242.132.37:3001/iChatGPT/login",
                 body: [
                     "user_name": formData.username,
                     "password": formData.password
                 ],
-                onStart: {
-                    isLoading = true
-                },
-                onFailure: { errorMsg in
-                    isLoading = false
-                    alertMsg = errorMsg
-                    showAlert = true
-                },
                 completion: { result in
                     print("result: ", result)
                     isLoading = false
@@ -170,13 +163,19 @@ struct Login: View {
                         case .success(let json):
                             print("login json: ", json)
                             if let dict = json as? [String: Any],
-                               let success = dict["success"] as? Int,
-                               success == 1 {
-                                userId = dict["user_id"] as? Int
-                                navigationPath.append("TOTP")
+                               let success = dict["success"] as? Int {
+                                 if success == 1 {
+                                    userId = dict["user_id"] as? Int
+                                    navigationPath.append("TOTP")
+                                 } else {
+                                     alertMsg = dict["message"] as? String
+                                     showAlert = true
+                                 }
                             }
                         case .failure(let error):
                             print("❌ 請求失敗: \(error.localizedDescription)")
+                            alertMsg = error.localizedDescription
+                            showAlert = true
                     }
                 }
             )

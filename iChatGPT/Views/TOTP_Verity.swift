@@ -37,19 +37,12 @@ struct TOTP_VerityView: View {
     }
     
     func speakeasy_verify() {
+        isLoading = true
         Request.request(url: "http://133.242.132.37:3001/iChatGPT/verify",
             body: [
                 "userId": userId!,
                 "token": $code.wrappedValue
             ],
-            onStart: {
-                isLoading = true
-            },
-            onFailure: { errorMsg in
-                isLoading = false
-                alertMsg = errorMsg
-                showAlert = true
-            },
             completion: { result in
                 print("result: ", result)
                 isLoading = false
@@ -65,6 +58,8 @@ struct TOTP_VerityView: View {
                         }
                         case .failure(let error):
                             print("❌ 請求失敗: \(error.localizedDescription)")
+                            alertMsg = error.localizedDescription
+                            showAlert = true
                 }
             }
         )
