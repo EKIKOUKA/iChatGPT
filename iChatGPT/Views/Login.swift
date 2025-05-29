@@ -34,12 +34,12 @@ struct Login: View {
             VStack {
                 
                 Spacer()
-                Text("Sign up a new account")
+                Text("アカンウトを登録")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 40)
                 
-                TextField("Username", text: $formData.username)
+                TextField("ユーザーネーム", text: $formData.username)
                     .padding()
                     .keyboardType(.asciiCapable)
                     .textContentType(.username)
@@ -69,13 +69,13 @@ struct Login: View {
                     
                     VStack {
                         if visible {
-                            TextField("Password", text: $formData.password)
+                            TextField("パスワード", text: $formData.password)
                                 .focused($passwordFieldIsFocused)
                                 .padding()
                                 .background(Color(.systemBackground))
                                 .cornerRadius(6)
                         } else {
-                            SecureField("Password", text: $formData.password)
+                            SecureField("パスワード", text: $formData.password)
                                 .focused($passwordFieldIsFocused)
                                 .textContentType(.password)
                                 .autocapitalization(.none)
@@ -113,7 +113,7 @@ struct Login: View {
                     Button(action: {
                         validate()
                     }) {
-                        Text("Sign up")
+                        Text("登録")
                             .fontWeight(.bold)
                             .padding()
                             .frame(maxWidth: .infinity)
